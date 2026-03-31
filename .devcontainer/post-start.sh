@@ -1,0 +1,35 @@
+#!/bin/bash
+# post-start.sh — Runs every time the container starts (including after stop/start).
+# Restores credentials and configures git for cross-platform compatibility.
+
+# --- Git safe.directory ---
+# Prevents "dubious ownership" errors across Docker Desktop, OrbStack, and
+# Rancher Desktop where UID mapping can cause ownership mismatches.
+# Add both /workspaces and the current directory as safe.
+# Covers Docker Desktop, OrbStack, and Rancher Desktop UID mismatches.
+git config --global --add safe.directory /workspaces 2>/dev/null || true
+if [ -n "$PWD" ] && [ "$PWD" != "/workspaces" ]; then
+  git config --global --add safe.directory "$PWD" 2>/dev/null || true
+fi
+
+# --- Restore Claude Code credentials from named volume ---
+VOLUME_PATH="/home/vscode/.claude-auth"
+if [ -d "$VOLUME_PATH" ]; then
+  mkdir -p ~/.claude
+  if [ -f "$VOLUME_PATH/credentials.json" ]; then
+    cp "$VOLUME_PATH/credentials.json" ~/.claude/.credentials.json 2>/dev/null || true
+  fi
+  if [ -f "$VOLUME_PATH/claude.json" ]; then
+    cp "$VOLUME_PATH/claude.json" ~/.claude.json 2>/dev/null || true
+  fi
+fi
+
+# --- Gemini auth status ---
+# Report which authentication method is active so users know their quota tier.
+if [ -n "$GEMINI_API_KEY" ] || [ -n "$GOOGLE_API_KEY" ]; then
+  echo "Gemini auth: API key detected (10 RPM free tier — consider OAuth for 6x quota)"
+elif [ -f "$HOME/.gemini/google_accounts.json" ]; then
+  echo "Gemini auth: OAuth credentials found (60 RPM)"
+else
+  echo "Gemini auth: not configured — run 'gemini' and use /auth to set up"
+fi

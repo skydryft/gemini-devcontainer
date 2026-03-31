@@ -1,0 +1,19 @@
+{
+  "tools": {
+    "sandbox": false
+  },
+  "context": {
+    "fileFiltering": {
+      "respectGitIgnore": true,
+      "respectGeminiIgnore": true
+    }
+  },
+  "general": {
+    "checkpointing": {
+      "enabled": true
+    }
+  },
+  "ui": {
+    "hideBanner": true
+  }
+}

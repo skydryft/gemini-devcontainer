@@ -1,0 +1,45 @@
+# .geminiignore — Controls which files Gemini CLI scans for context.
+# Critical for devcontainer performance: .git/ alone saves ~70% startup time.
+
+# Version control internals
+.git/
+
+# Dependencies (scanned via package.json, not file contents)
+node_modules/
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+
+# Caches and coverage
+.cache/
+coverage/
+.nyc_output/
+
+# Lock files (large, low context value)
+*.lock
+
+# Logs
+*.log
+
+# Binary and media files
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+*.ico
+*.mp4
+*.webm
+*.woff
+*.woff2
+*.ttf
+*.eot
+
+# IDE and tool configuration
+.vscode/
+.idea/
+__pycache__/
+*.pyc
