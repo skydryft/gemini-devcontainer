@@ -8,6 +8,7 @@ echo "==> Setting up Gemini CLI dev environment..."
 # --- Named volume ownership ---
 # Docker creates named volumes as root. Fix ownership for the vscode user.
 sudo chown vscode:vscode node_modules 2>/dev/null || true
+sudo chown -R vscode:vscode /home/vscode/.npm 2>/dev/null || true
 sudo chown -R vscode:vscode /home/vscode/.gemini 2>/dev/null || true
 
 # --- Install Gemini CLI ---
