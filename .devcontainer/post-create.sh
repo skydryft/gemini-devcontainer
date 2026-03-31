@@ -11,11 +11,17 @@ sudo chown vscode:vscode node_modules 2>/dev/null || true
 sudo chown -R vscode:vscode /home/vscode/.npm 2>/dev/null || true
 sudo chown -R vscode:vscode /home/vscode/.gemini 2>/dev/null || true
 
-# --- Install Gemini CLI GT ---
-# Install from GitHub Packages (public @skydryft scope).
-echo "==> Installing Gemini CLI GT..."
-npm config set @skydryft:registry https://npm.pkg.github.com
-npm install -g @skydryft/gemini-cli@latest
+# --- Install Gemini CLI GT (build from source) ---
+# GitHub Packages requires auth even for public packages, so we clone and build.
+echo "==> Installing Gemini CLI GT (building from source)..."
+BUILD_DIR=$(mktemp -d)
+git clone --depth 1 https://github.com/skydryft/gemini-cli-gt.git "$BUILD_DIR/gemini-cli-gt"
+cd "$BUILD_DIR/gemini-cli-gt"
+npm install
+npm run build
+npm install -g .
+cd /workspaces
+rm -rf "$BUILD_DIR"
 
 # --- Install project dependencies ---
 if [ -f "package.json" ]; then
