@@ -19,8 +19,11 @@ BUILD_DIR=$(mktemp -d)
 git clone --depth 1 https://github.com/skydryft/gemini-cli-gt.git "$BUILD_DIR/gemini-cli-gt"
 cd "$BUILD_DIR/gemini-cli-gt"
 npm install --ignore-scripts
-npm run build
-npm install -g ./packages/cli
+npm run generate
+npm run build --workspace=@skydryft/gemini-cli-core
+npm run build --workspace=@skydryft/gemini-cli
+node esbuild.config.js
+npm install -g .
 cd /workspaces
 rm -rf "$BUILD_DIR"
 
