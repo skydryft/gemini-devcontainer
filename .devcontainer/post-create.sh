@@ -24,7 +24,11 @@ npm run build --workspace=@skydryft/gemini-cli-core
 npm run build --workspace=@skydryft/gemini-cli-devtools
 npm run build --workspace=@skydryft/gemini-cli
 node esbuild.config.js
-npm install -g --ignore-scripts .
+scripts/copy_bundle_assets.js 2>/dev/null || true
+sudo mkdir -p /opt/gemini-cli-gt
+sudo cp -r bundle/* /opt/gemini-cli-gt/
+sudo ln -sf /opt/gemini-cli-gt/gemini.js /usr/local/bin/gemini
+sudo chmod +x /usr/local/bin/gemini /opt/gemini-cli-gt/gemini.js
 cd /workspaces
 rm -rf "$BUILD_DIR"
 
