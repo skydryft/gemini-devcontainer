@@ -12,18 +12,6 @@ if [ -n "$PWD" ] && [ "$PWD" != "/workspaces" ]; then
   git config --global --add safe.directory "$PWD" 2>/dev/null || true
 fi
 
-# --- Restore Claude Code credentials from named volume ---
-VOLUME_PATH="/home/vscode/.claude-auth"
-if [ -d "$VOLUME_PATH" ]; then
-  mkdir -p ~/.claude
-  if [ -f "$VOLUME_PATH/credentials.json" ]; then
-    cp "$VOLUME_PATH/credentials.json" ~/.claude/.credentials.json 2>/dev/null || true
-  fi
-  if [ -f "$VOLUME_PATH/claude.json" ]; then
-    cp "$VOLUME_PATH/claude.json" ~/.claude.json 2>/dev/null || true
-  fi
-fi
-
 # --- Gemini auth status ---
 # Report which authentication method is active so users know their quota tier.
 if [ -n "$GEMINI_API_KEY" ] || [ -n "$GOOGLE_API_KEY" ]; then

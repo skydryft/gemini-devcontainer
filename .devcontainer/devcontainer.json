@@ -27,7 +27,6 @@
 
   "mounts": [
     "source=${localWorkspaceFolderBasename}-node_modules,target=${containerWorkspaceFolder}/node_modules,type=volume",
-    "source=claude-credentials,target=/home/vscode/.claude-auth,type=volume",
     "source=npm-cache,target=/home/vscode/.npm,type=volume",
     "source=gemini-config,target=/home/vscode/.gemini,type=volume"
   ],
