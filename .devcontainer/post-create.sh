@@ -21,6 +21,7 @@ cd "$BUILD_DIR/gemini-cli-gt"
 npm install --ignore-scripts
 npm run generate
 npm run build --workspace=@skydryft/gemini-cli-core
+npm run build --workspace=@skydryft/gemini-cli-devtools
 npm run build --workspace=@skydryft/gemini-cli
 node esbuild.config.js
 npm install -g .
