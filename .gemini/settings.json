@@ -1,6 +1,33 @@
 {
+  "general": {
+    "defaultApprovalMode": "auto_edit",
+    "checkpointing": {
+      "enabled": true
+    }
+  },
+  "model": {
+    "compressionThreshold": 0.5
+  },
+  "ui": {
+    "hideBanner": true,
+    "hideTips": true,
+    "showShortcutsHint": false,
+    "loadingPhrases": "off",
+    "inlineThinkingMode": "full",
+    "showModelInfoInChat": true,
+    "footer": {
+      "hideModelInfo": false,
+      "hideContextPercentage": false
+    }
+  },
   "tools": {
-    "sandbox": false
+    "sandbox": false,
+    "core": [
+      "run_shell_command",
+      "ask_user",
+      "update_topic",
+      "save_memory"
+    ]
   },
   "context": {
     "fileFiltering": {
@@ -8,12 +35,9 @@
       "respectGeminiIgnore": true
     }
   },
-  "general": {
-    "checkpointing": {
-      "enabled": true
-    }
-  },
-  "ui": {
-    "hideBanner": true
+  "experimental": {
+    "plan": true,
+    "enableAgents": true,
+    "taskTracker": true
   }
 }

@@ -1,51 +1,53 @@
 <!-- GEMINI.md — Project context for Gemini CLI GT -->
-<!-- Keep this file under 100 lines / 300 words of instructions. -->
-<!-- Move domain-specific knowledge into .gemini/skills/ for progressive disclosure. -->
-<!-- Use @file.md imports for modular composition (loaded at context assembly time). -->
+<!-- This file is the primary context source for the AI agent. -->
+<!-- Keep instructions clear and actionable. -->
 
 <role>
-You are a senior engineer working on [PROJECT_NAME]. You are precise, concise,
-and cite file paths when referencing code. Treat all requests as analysis unless
-they contain an explicit instruction to modify files.
+You are a senior engineer working on this project. You are precise, concise,
+and cite file paths when referencing code.
 </role>
 
-<instructions>
+<workflow>
+## How to work on this project
+
+### Starting fresh (no application code exists yet)
+When the workspace has no application source code and the user asks to get
+started, kick off, or build something:
+
+1. **Read this file first.** The <project_context> section is your requirements.
+2. **Quick scan only.** Run `ls` to confirm the workspace state.
+   Do NOT explore extensively — there is nothing to find yet.
+3. **Draft a project plan** including: tech stack, architecture, directory
+   structure, implementation phases, and testing strategy.
+4. **Present the plan and wait for approval.** Do not write any code until the
+   user approves.
+5. **Execute incrementally.** Build one phase at a time, verify each works.
+
+### Working on an existing codebase
 1. Follow the coding conventions established in this project. Match patterns in
    adjacent files for naming, formatting, typing, and error handling.
-2. Tech stack: [LANGUAGE/FRAMEWORK — e.g., TypeScript, React 19, Node.js 20]
-3. Commands:
-   - Build: `[BUILD_COMMAND — e.g., npm run build]`
-   - Test: `[TEST_COMMAND — e.g., npm test]`
-   - Lint: `[LINT_COMMAND — e.g., npm run lint]`
-   - Typecheck: `[TYPECHECK_COMMAND — e.g., npx tsc --noEmit]`
-4. Run the full test suite before considering any task complete.
-5. Use idiomatic language features instead of suppressing warnings or bypassing
-   the type system. Verify library availability in project config before using it.
-</instructions>
+2. Run build, lint, and test commands after every code change.
+3. Use idiomatic language features instead of suppressing warnings or bypassing
+   the type system.
 
-<!-- Uncomment and create these files for modular composition: -->
-<!-- @./docs/conventions.md -->
-<!-- @./docs/architecture.md -->
+### Commands (fill in once established)
+- Build: `[BUILD_COMMAND]`
+- Test: `[TEST_COMMAND]`
+- Lint: `[LINT_COMMAND]`
+</workflow>
 
 <project_context>
-[2-4 sentence project description. What does this project do? Who uses it?]
-
-Key directories:
-- `src/` — [purpose]
-- `tests/` — [purpose]
-- `docs/` — [purpose]
+This project aims to build an internal business information/knowledge mapping
+solution. The idea is to take vast amounts of unstructured business data like
+documents, presentations, spreadsheets, etc., feed them into an application,
+where the output is generated insight about relationships, similarities,
+opportunities, and connections between different business efforts for customer
+deliveries and awarded contracts.
 </project_context>
 
 <constraints>
-- Match existing patterns in adjacent files for all style decisions.
-- Run build, lint, and test commands after every code change.
-- Use the project's established error handling pattern.
 - When constraints conflict, prioritize: correctness > safety > simplicity > style.
+- Do not introduce new dependencies without checking if they are already available.
+- Do not modify files outside the scope of the current request.
+- Ask clarifying questions early rather than building the wrong thing.
 </constraints>
-
-<final_instruction>
-Do not introduce new dependencies without verifying they are not already available
-in the project. Do not modify files outside the scope of the current request.
-Treat all requests as analysis-only unless they contain an explicit instruction to
-modify files — this is the most important rule.
-</final_instruction>
