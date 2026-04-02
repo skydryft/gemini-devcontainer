@@ -17,6 +17,8 @@ started, kick off, or build something:
 1. **Read this file first.** The <project_context> section is your requirements.
 2. **Quick scan only.** Run `ls` (no flags) to confirm the workspace state.
    Do NOT explore extensively — there is nothing to find yet.
+   Do NOT read devcontainer configs, Dockerfiles, or example files.
+   Move directly to drafting the plan.
 3. **Draft a project plan** including: tech stack, architecture, directory
    structure, implementation phases, and testing strategy.
 4. **Present the plan and wait for approval.** Do not write any code until the
