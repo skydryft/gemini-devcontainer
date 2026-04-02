@@ -17,7 +17,15 @@
     "showModelInfoInChat": true,
     "footer": {
       "hideModelInfo": false,
-      "hideContextPercentage": false
+      "hideContextPercentage": false,
+      "items": [
+        "workspace",
+        "git-branch",
+        "model-name",
+        "context-used",
+        "code-changes",
+        "token-count"
+      ]
     }
   },
   "tools": {
