@@ -15,7 +15,7 @@ When the workspace has no application source code and the user asks to get
 started, kick off, or build something:
 
 1. **Read this file first.** The <project_context> section is your requirements.
-2. **Quick scan only.** Run `ls` to confirm the workspace state.
+2. **Quick scan only.** Run `ls` (no flags) to confirm the workspace state.
    Do NOT explore extensively — there is nothing to find yet.
 3. **Draft a project plan** including: tech stack, architecture, directory
    structure, implementation phases, and testing strategy.
@@ -50,4 +50,6 @@ deliveries and awarded contracts.
 - Do not introduce new dependencies without checking if they are already available.
 - Do not modify files outside the scope of the current request.
 - Ask clarifying questions early rather than building the wrong thing.
+- If a shell command fails, try a simpler alternative immediately. Do not spend
+  time analyzing the error — just use a basic version of the command and move on.
 </constraints>
