@@ -45,6 +45,30 @@ opportunities, and connections between different business efforts for customer
 deliveries and awarded contracts.
 </project_context>
 
+<operational>
+## Operational Files
+All agent operational files go under `.gemini/` to keep a clear separation from
+project code and documentation. Do not write operational files to the project root.
+
+### Session Notes (`.gemini/session_notes/`)
+Write session summaries at natural stopping points in work — when completing a
+feature phase, switching contexts, or ending a working session. Also write them
+when asked. Do not write a summary after every prompt exchange.
+
+File naming: `YYYY-MM-DD-HHMM-<topic-slug>.md`
+Example: `2026-04-02-1430-fastapi-phase1-setup.md`
+
+Each summary should cover:
+- What was accomplished in plain language
+- Key decisions made and why
+- Current state of the work
+- Next steps or open items
+
+### Task Tracking (`.gemini/tracker/tasks/`)
+When decomposing work into discrete tasks, write JSON task files here.
+Read existing task files at session start to resume where you left off.
+</operational>
+
 <skills>
 ## Skill Files
 Specialized instruction files are available in `.gemini/skills/`. Each subdirectory
