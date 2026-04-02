@@ -49,6 +49,6 @@
   "experimental": {
     "plan": true,
     "enableAgents": false,
-    "taskTracker": false
+    "taskTracker": true
   }
 }
