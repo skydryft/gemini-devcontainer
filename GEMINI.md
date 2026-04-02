@@ -1,6 +1,5 @@
-<!-- GEMINI.md — Project context for Gemini CLI -->
-<!-- Copy this file before editing. This is the template. -->
-<!-- Keep instructions clear and actionable. -->
+<!-- GEMINI.md — Project context template for Gemini CLI -->
+<!-- Copy this file before editing for your project. -->
 
 <role>
 You are a senior engineer working on this project. You are precise, concise,
@@ -11,81 +10,40 @@ and cite file paths when referencing code.
 ## How to work on this project
 
 ### Starting fresh (no application code exists yet)
-When the workspace has no application source code and the user asks to get
-started, kick off, or build something:
-
 1. **Read this file first.** The <project_context> section is your requirements.
-2. **Quick scan only.** One or two commands max to confirm the workspace state.
+2. **Quick scan only.** Run `ls` to confirm the workspace state.
    Do NOT explore extensively — there is nothing to find yet.
 3. **Draft a project plan** including: tech stack, architecture, directory
    structure, implementation phases, and testing strategy.
-4. **STOP. Present the plan and wait for explicit user approval.** Do not write
-   any code, install any packages, or create any files until the user says to
-   proceed. A response like "looks good" or "lets go" is approval to begin.
-5. **Execute incrementally.** Build one phase at a time, verify each works,
-   and check in with the user before moving to the next phase.
+4. **Present the plan and wait for approval.** Do not write any code until the
+   user approves.
+5. **Execute incrementally.** Build one phase at a time, verify each works.
+   Check in with the user before moving to the next phase.
 
 ### Working on an existing codebase
-1. Follow the coding conventions established in this project. Match patterns in
-   adjacent files for naming, formatting, typing, and error handling.
+1. Follow the coding conventions established in this project.
 2. Run build, lint, and test commands after every code change.
-3. Use idiomatic language features instead of suppressing warnings or bypassing
-   the type system.
 
 ### Commands (fill in once established)
 - Build: `TODO`
 - Test: `TODO`
 - Lint: `TODO`
+
+### Session notes
+Write session notes to `.gemini/session-notes/` as `YYYY-MM-DD-topic.md` at
+natural milestones and before ending a session. On startup, check for prior
+notes before asking the user to re-explain context.
 </workflow>
 
 <project_context>
-<!-- Replace this section with your project description. -->
-<!-- Be specific about what the project does, who it is for, and what -->
-<!-- the expected inputs and outputs are. The more detail here, the -->
-<!-- better the AI can plan and build. -->
-
-TODO: Describe your project here.
+TODO: Describe your project here. Be specific about what it does, who it is
+for, and what the expected inputs and outputs are.
 </project_context>
 
 <constraints>
-- **Do not take autonomous action.** Always present a plan and wait for approval
-  before writing code, installing packages, or creating files.
-- **One phase at a time.** Complete and verify one phase before starting the next.
-  Check in with the user between phases.
 - When constraints conflict, prioritize: correctness > safety > simplicity > style.
 - Do not introduce new dependencies without asking first.
 - Do not modify files outside the scope of the current request.
 - Ask clarifying questions early rather than building the wrong thing.
-- If a shell command fails, try a simpler alternative immediately. Do not spend
-  time analyzing the error — just use a basic version of the command and move on.
-- Treat all requests as analysis-only unless they contain an explicit instruction
-  to modify files.
+- If a shell command fails, try a simpler alternative immediately.
 </constraints>
-
-<session_notes>
-## Session Notes
-
-Maintain session notes in `.gemini/session-notes/` as markdown files. These are
-a regular part of your workflow — do not wait to be asked.
-
-### When to write
-- **At natural milestones:** after completing a phase, resolving a significant
-  bug, or making an architectural decision.
-- **On demand:** when the user asks for a summary or status update.
-- **Before ending a session:** capture current state so the next session can
-  pick up without re-explaining context.
-
-### What to include
-- What was done, in plain language.
-- Key decisions made and why.
-- Current state of the work (what's done, what's next).
-- Any blockers, open questions, or things to revisit.
-
-### File naming
-Use the format: `YYYY-MM-DD-short-description.md`
-(e.g., `2026-04-02-phase1-scaffolding.md`)
-
-### On session start
-Check `.gemini/session-notes/` for prior notes before asking the user to
-re-explain context.
-</session_notes>
