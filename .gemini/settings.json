@@ -35,9 +35,12 @@
       "respectGeminiIgnore": true
     }
   },
+  "skills": {
+    "enabled": false
+  },
   "experimental": {
     "plan": true,
-    "enableAgents": true,
-    "taskTracker": true
+    "enableAgents": false,
+    "taskTracker": false
   }
 }

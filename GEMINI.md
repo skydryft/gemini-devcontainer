@@ -45,6 +45,19 @@ opportunities, and connections between different business efforts for customer
 deliveries and awarded contracts.
 </project_context>
 
+<skills>
+## Skill Files
+Specialized instruction files are available in `.gemini/skills/`. Each subdirectory
+contains a `SKILL.md` with domain-specific guidance for particular tasks.
+
+When starting a task that may benefit from specialized guidance:
+1. Run `cat .gemini/skills/index.md` to see available skills and their descriptions.
+2. If a relevant skill exists, run `cat .gemini/skills/<name>/SKILL.md` to load it.
+3. Follow the loaded instructions for the duration of that task.
+
+Do not load skills speculatively — only when the current task clearly matches.
+</skills>
+
 <constraints>
 - When constraints conflict, prioritize: correctness > safety > simplicity > style.
 - Do not introduce new dependencies without checking if they are already available.
