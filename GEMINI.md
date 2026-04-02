@@ -61,3 +61,31 @@ TODO: Describe your project here.
 - Treat all requests as analysis-only unless they contain an explicit instruction
   to modify files.
 </constraints>
+
+<session_notes>
+## Session Notes
+
+Maintain session notes in `.gemini/session-notes/` as markdown files. These are
+a regular part of your workflow — do not wait to be asked.
+
+### When to write
+- **At natural milestones:** after completing a phase, resolving a significant
+  bug, or making an architectural decision.
+- **On demand:** when the user asks for a summary or status update.
+- **Before ending a session:** capture current state so the next session can
+  pick up without re-explaining context.
+
+### What to include
+- What was done, in plain language.
+- Key decisions made and why.
+- Current state of the work (what's done, what's next).
+- Any blockers, open questions, or things to revisit.
+
+### File naming
+Use the format: `YYYY-MM-DD-short-description.md`
+(e.g., `2026-04-02-phase1-scaffolding.md`)
+
+### On session start
+Check `.gemini/session-notes/` for prior notes before asking the user to
+re-explain context.
+</session_notes>
