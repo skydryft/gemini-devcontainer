@@ -9,5 +9,5 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # Pre-create config directories with correct ownership.
 # These may be overlaid by named volumes or bind mounts at runtime.
-RUN mkdir -p /home/vscode/.gemini \
+RUN mkdir -p /home/vscode/.gemini/tracker/tasks \
     && chown -R vscode:vscode /home/vscode/.gemini
