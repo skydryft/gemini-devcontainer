@@ -15,10 +15,10 @@ When the workspace has no application source code and the user asks to get
 started, kick off, or build something:
 
 1. **Read this file first.** The <project_context> section is your requirements.
-2. **Quick scan only.** Run `ls` (no flags) to confirm the workspace state.
-   Do NOT explore extensively — there is nothing to find yet.
-   Do NOT read devcontainer configs, Dockerfiles, or example files.
-   Move directly to drafting the plan.
+2. **Quick scan only.** One or two commands max to confirm the workspace state
+   and review the devcontainer setup. Do NOT explore extensively or read files
+   one at a time — there is nothing to find yet. Move directly to drafting
+   the plan.
 3. **Draft a project plan** including: tech stack, architecture, directory
    structure, implementation phases, and testing strategy.
 4. **Present the plan and wait for approval.** Do not write any code until the
