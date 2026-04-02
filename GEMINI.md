@@ -69,22 +69,20 @@ When decomposing work into discrete tasks, write JSON task files here.
 Read existing task files at session start to resume where you left off.
 </operational>
 
-<skills>
-## Skill Files
-Specialized instruction files are available in `.gemini/skills/`. Each subdirectory
-contains a `SKILL.md` with domain-specific guidance for particular tasks.
-
-When starting a task that may benefit from specialized guidance:
-1. Run `cat .gemini/skills/index.md` to see available skills and their descriptions.
-2. If a relevant skill exists, run `cat .gemini/skills/<name>/SKILL.md` to load it.
-3. Follow the loaded instructions for the duration of that task.
-
-Do not load skills speculatively — only when the current task clearly matches.
-</skills>
-
 <constraints>
 - When constraints conflict, prioritize: correctness > safety > simplicity > style.
 - Do not introduce new dependencies without checking if they are already available.
 - Do not modify files outside the scope of the current request.
 - Ask clarifying questions early rather than building the wrong thing.
 </constraints>
+
+<shell_tools>
+## Preferred Shell Tools
+This container includes optimized alternatives to standard Unix utilities.
+Always use these instead of their slower defaults:
+
+- **`rg`** instead of `grep` — ripgrep, significantly faster with better defaults
+- **`fdfind`** instead of `find` — simpler syntax, respects .gitignore by default
+- **`jq`** for parsing and filtering JSON — never use grep on JSON output
+- **`tree`** for directory structure overview — prefer over recursive `ls`
+</shell_tools>

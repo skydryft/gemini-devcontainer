@@ -47,8 +47,8 @@
     "enabled": false
   },
   "experimental": {
-    "plan": true,
+    "plan": false,
     "enableAgents": false,
-    "taskTracker": true
+    "taskTracker": false
   }
 }

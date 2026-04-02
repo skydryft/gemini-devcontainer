@@ -6,8 +6,3 @@ FROM mcr.microsoft.com/devcontainers/base:ubuntu
 RUN apt-get update && apt-get install -y --no-install-recommends \
     ripgrep fd-find jq tree \
     && rm -rf /var/lib/apt/lists/*
-
-# Pre-create config directories with correct ownership.
-# These may be overlaid by named volumes or bind mounts at runtime.
-RUN mkdir -p /home/vscode/.gemini \
-    && chown -R vscode:vscode /home/vscode/.gemini
