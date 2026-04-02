@@ -9,6 +9,7 @@ This is a starter template for new projects that use Gemini CLI as the primary A
 - A devcontainer configuration with Gemini CLI pre-installed from the [gemini-cli-gt](../gemini-cli-gt/) fork
 - Pre-tuned `.gemini/settings.json` with shell-only mode enabled for optimal model performance
 - A `GEMINI.md` template with workflow guidance that works with the reduced tool set
+- Session notes and task tracking conventions in `.gemini/`
 - Credential persistence across container rebuilds via a shared Docker volume
 
 ## Quick Start
@@ -49,7 +50,7 @@ To revert to the full tool set, remove the `tools.core` key entirely.
 
 ### `GEMINI.md`
 
-The project context file. Edit the `<project_context>` section with your project's description, and fill in the build/test/lint commands once established. The `<workflow>` section guides the model on how to approach greenfield vs existing codebases.
+The project context template. Copy this file before editing for your project. Fill in the `<project_context>` section with your project description and update the build/test/lint commands once established. Keep this file lean — context length directly impacts Gemini flash response times.
 
 ### Credential Persistence
 
@@ -64,9 +65,14 @@ Credentials are stored in a shared Docker named volume (`claude-credentials`):
 ```
 .devcontainer/
   devcontainer.json    Container configuration
+  Dockerfile           Base image and tooling
+  post-create.sh       First-run setup (builds gemini-cli-gt)
+  post-start.sh        Auth status on every start
 .gemini/
   settings.json        Gemini CLI settings (shell-only mode)
-GEMINI.md              Project context for the AI agent
+  session-notes/       Session summaries (written by the model)
+  tracker/tasks/       Task tracking (managed by the model)
+GEMINI.md              Project context template
 ```
 
 ## Customizing the Devcontainer
