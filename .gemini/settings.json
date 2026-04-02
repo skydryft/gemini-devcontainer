@@ -17,15 +17,7 @@
     "showModelInfoInChat": true,
     "footer": {
       "hideModelInfo": false,
-      "hideContextPercentage": false,
-      "items": [
-        "workspace",
-        "git-branch",
-        "model-name",
-        "context-used",
-        "code-changes",
-        "token-count"
-      ]
+      "hideContextPercentage": false
     }
   },
   "tools": {
@@ -43,12 +35,9 @@
       "respectGeminiIgnore": true
     }
   },
-  "skills": {
-    "enabled": false
-  },
   "experimental": {
     "plan": true,
-    "enableAgents": false,
+    "enableAgents": true,
     "taskTracker": true
   }
 }

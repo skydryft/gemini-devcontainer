@@ -45,44 +45,9 @@ opportunities, and connections between different business efforts for customer
 deliveries and awarded contracts.
 </project_context>
 
-<operational>
-## Operational Files
-All agent operational files go under `.gemini/` to keep a clear separation from
-project code and documentation. Do not write operational files to the project root.
-
-### Session Notes (`.gemini/session_notes/`)
-Write session summaries at natural stopping points in work — when completing a
-feature phase, switching contexts, or ending a working session. Also write them
-when asked. Do not write a summary after every prompt exchange.
-
-File naming: `YYYY-MM-DD-HHMM-<topic-slug>.md`
-Example: `2026-04-02-1430-fastapi-phase1-setup.md`
-
-Each summary should cover:
-- What was accomplished in plain language
-- Key decisions made and why
-- Current state of the work
-- Next steps or open items
-
-### Task Tracking (`.gemini/tracker/tasks/`)
-When decomposing work into discrete tasks, write JSON task files here.
-Read existing task files at session start to resume where you left off.
-</operational>
-
 <constraints>
 - When constraints conflict, prioritize: correctness > safety > simplicity > style.
 - Do not introduce new dependencies without checking if they are already available.
 - Do not modify files outside the scope of the current request.
 - Ask clarifying questions early rather than building the wrong thing.
 </constraints>
-
-<shell_tools>
-## Preferred Shell Tools
-This container includes optimized alternatives to standard Unix utilities.
-Always use these instead of their slower defaults:
-
-- **`rg`** instead of `grep` — ripgrep, significantly faster with better defaults
-- **`fdfind`** instead of `find` — simpler syntax, respects .gitignore by default
-- **`jq`** for parsing and filtering JSON — never use grep on JSON output
-- **`tree`** for directory structure overview — prefer over recursive `ls`
-</shell_tools>
