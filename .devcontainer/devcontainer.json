@@ -1,5 +1,5 @@
 {
-  "name": "Gemini CLI Dev Environment",
+  "name": "Gemini CLI — Rails Dev Environment",
   "build": {
     "dockerfile": "Dockerfile",
     "context": ".."
@@ -8,6 +8,7 @@
   "updateRemoteUserUID": true,
 
   "features": {
+    "ghcr.io/devcontainers/features/ruby:1": { "version": "latest" },
     "ghcr.io/devcontainers/features/node:1": { "version": "20" },
     "ghcr.io/devcontainers/features/github-cli:1": {}
   },
@@ -21,13 +22,15 @@
     "GEMINI_API_KEY": "${localEnv:GEMINI_API_KEY}",
     "GOOGLE_API_KEY": "${localEnv:GOOGLE_API_KEY}",
     "GEMINI_MODEL": "${localEnv:GEMINI_MODEL}",
+    "DATABASE_URL": "postgresql://rails:rails@localhost:5432/app_development",
     "NO_UPDATE_NOTIFIER": "1",
     "NODE_OPTIONS": "--max-old-space-size=4096"
   },
 
   "mounts": [
-    "source=${localWorkspaceFolderBasename}-node_modules,target=${containerWorkspaceFolder}/node_modules,type=volume",
     "source=npm-cache,target=/home/vscode/.npm,type=volume",
+    "source=gem-cache,target=/home/vscode/.gem,type=volume",
+    "source=bundle-cache,target=/usr/local/bundle,type=volume",
     "source=gemini-config,target=/home/vscode/.gemini,type=volume"
   ],
 
@@ -40,24 +43,32 @@
         "files.watcherExclude": {
           "**/node_modules/**": true,
           "**/.git/objects/**": true,
-          "**/dist/**": true,
-          "**/build/**": true,
-          "**/.next/**": true
+          "**/tmp/**": true,
+          "**/log/**": true,
+          "**/vendor/bundle/**": true,
+          "**/public/assets/**": true,
+          "**/storage/**": true
         },
         "search.exclude": {
           "**/node_modules": true,
-          "**/dist": true,
-          "**/.next": true
+          "**/tmp": true,
+          "**/log": true,
+          "**/vendor/bundle": true,
+          "**/public/assets": true
         }
       }
     }
   },
 
-  "forwardPorts": [3000],
+  "forwardPorts": [3000, 5432],
   "portsAttributes": {
     "3000": {
-      "label": "App",
+      "label": "Rails Server",
       "onAutoForward": "notify"
+    },
+    "5432": {
+      "label": "PostgreSQL",
+      "onAutoForward": "ignore"
     }
   }
 }

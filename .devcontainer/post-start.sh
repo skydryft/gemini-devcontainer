@@ -1,6 +1,10 @@
 #!/bin/bash
 # post-start.sh — Runs every time the container starts (including after stop/start).
-# Restores credentials and configures git for cross-platform compatibility.
+# Starts services, restores credentials, and configures git.
+
+# --- Start PostgreSQL ---
+# Ensure the database server is running on every container start.
+sudo service postgresql start 2>/dev/null || true
 
 # --- Git safe.directory ---
 # Prevents "dubious ownership" errors across Docker Desktop, OrbStack, and

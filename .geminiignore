@@ -4,14 +4,20 @@
 # Version control internals
 .git/
 
-# Dependencies (scanned via package.json, not file contents)
+# Dependencies (scanned via Gemfile, not file contents)
 node_modules/
+vendor/bundle/
 
-# Build outputs
+# Rails temporary files and caches
+tmp/
+log/
+storage/
+
+# Build outputs and compiled assets
 dist/
 build/
-.next/
-out/
+public/assets/
+public/packs/
 
 # Caches and coverage
 .cache/
@@ -23,6 +29,9 @@ coverage/
 
 # Logs
 *.log
+
+# Database files
+db/*.sqlite3
 
 # Binary and media files
 *.png

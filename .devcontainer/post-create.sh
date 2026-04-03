@@ -1,15 +1,16 @@
 #!/bin/bash
 # post-create.sh — Runs once after container creation (including rebuilds).
-# Installs Gemini CLI GT and project dependencies.
+# Installs Gemini CLI GT, Ruby on Rails, and configures PostgreSQL.
 set -e
 
-echo "==> Setting up Gemini CLI dev environment..."
+echo "==> Setting up Gemini CLI Rails dev environment..."
 
 # --- Named volume ownership ---
 # Docker creates named volumes as root. Fix ownership for the vscode user.
-sudo chown vscode:vscode node_modules 2>/dev/null || true
 sudo chown -R vscode:vscode /home/vscode/.npm 2>/dev/null || true
+sudo chown -R vscode:vscode /home/vscode/.gem 2>/dev/null || true
 sudo chown -R vscode:vscode /home/vscode/.gemini 2>/dev/null || true
+sudo chown -R vscode:vscode /usr/local/bundle 2>/dev/null || true
 
 # --- Install Gemini CLI GT (build from source) ---
 # GitHub Packages requires auth even for public packages, so we clone and build.
@@ -32,10 +33,25 @@ sudo chmod +x /usr/local/bin/gemini /opt/gemini-cli-gt/gemini.js
 cd /workspaces
 rm -rf "$BUILD_DIR"
 
-# --- Install project dependencies ---
-if [ -f "package.json" ]; then
-  echo "==> Installing project dependencies..."
-  npm install
+# --- Start PostgreSQL ---
+echo "==> Starting PostgreSQL..."
+sudo service postgresql start
+
+# --- Create development databases ---
+echo "==> Creating development databases..."
+sudo -u postgres createdb app_development 2>/dev/null || true
+sudo -u postgres createdb app_test 2>/dev/null || true
+sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE app_development TO rails;" 2>/dev/null || true
+sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE app_test TO rails;" 2>/dev/null || true
+
+# --- Install Rails and Bundler ---
+echo "==> Installing Rails and Bundler..."
+gem install rails bundler --no-document
+
+# --- Install project dependencies (if Gemfile exists) ---
+if [ -f "Gemfile" ]; then
+  echo "==> Installing project gem dependencies..."
+  bundle install
 fi
 
 # --- Copy template files if they don't exist ---
@@ -57,6 +73,17 @@ fi
 echo ""
 echo "=== Setup complete ==="
 echo "  Gemini CLI GT: $(gemini --version 2>/dev/null || echo 'installed (checking...)')"
-echo "  Node.js: $(node --version)"
+echo "  Ruby:          $(ruby --version)"
+echo "  Rails:         $(rails --version)"
+echo "  Bundler:       $(bundler --version)"
+echo "  PostgreSQL:    $(psql --version)"
+echo "  Node.js:       $(node --version)"
+echo ""
+echo "Database credentials: rails/rails @ localhost:5432"
+echo "  Development DB: app_development"
+echo "  Test DB:        app_test"
+echo ""
+echo "To start a new Rails app:"
+echo "  rails new myapp --database=postgresql"
 echo ""
 echo "For Gemini, set GEMINI_API_KEY or use OAuth: run 'gemini' and follow /auth prompts."
