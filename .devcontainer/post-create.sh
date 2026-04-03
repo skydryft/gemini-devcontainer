@@ -32,6 +32,10 @@ sudo chmod +x /usr/local/bin/gemini /opt/gemini-cli-gt/gemini.js
 cd /workspaces
 rm -rf "$BUILD_DIR"
 
+# --- Install skills CLI (universal agent skill installer) ---
+echo "==> Installing skills CLI..."
+npm install -g skills
+
 # --- Install project dependencies ---
 if [ -f "package.json" ]; then
   echo "==> Installing project dependencies..."
