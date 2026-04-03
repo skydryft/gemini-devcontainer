@@ -23,6 +23,21 @@ and cite file paths when referencing code.
 1. Follow the coding conventions established in this project.
 2. Run build, lint, and test commands after every code change.
 
+### Editing files
+- For changes under ~20 lines, use targeted edits (`sed`, `awk`, or patch) instead
+  of rewriting the entire file. Full-file rewrites risk silent regressions.
+- Never rewrite a file over 50 lines without first summarizing what will change and
+  confirming the diff is intentional.
+- When auditing or modifying multiple similar files, read them in a single batched
+  command (`cat file1 file2 file3`) rather than one at a time.
+
+### Verification
+- After modifying UI, views, or templates: start the app and verify key pages
+  render without errors. Do not declare work complete based solely on what was written.
+- After modifying backend logic: run the relevant test suite before moving on.
+- If a config file or dependency is expected but missing, stop and ask whether to
+  create it before working around the gap with inline fixes.
+
 ### Commands
 - Server: `rails server` (port 3000)
 - Console: `rails console`
@@ -56,4 +71,7 @@ who it is for, models/resources, and key features.
 - If a shell command fails, try a simpler alternative immediately.
 - Use Rails conventions: RESTful routes, ActiveRecord patterns, MVC structure.
 - Write model validations and database constraints for data integrity.
+- Before starting repetitive edits across multiple files, identify a shared pattern
+  (CSS class, partial, helper, config) and apply it uniformly. Do not copy-paste
+  fixes file by file when a single shared abstraction would cover all cases.
 </constraints>
