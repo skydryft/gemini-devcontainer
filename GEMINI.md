@@ -61,6 +61,8 @@ for, and what the expected inputs and outputs are.
 - Do not modify files outside the scope of the current request.
 - Ask clarifying questions early rather than building the wrong thing.
 - If a shell command fails, try a simpler alternative immediately.
+- If you fail twice at the same operation, stop. Check if a skill has the
+  answer (`/skills list`). If none fits, ask the user for guidance.
 - Before starting repetitive edits across multiple files, identify a shared pattern
   (CSS class, partial, helper, config) and apply it uniformly. Do not copy-paste
   fixes file by file when a single shared abstraction would cover all cases.
