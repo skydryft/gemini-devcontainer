@@ -69,6 +69,8 @@ who it is for, models/resources, and key features.
 - Do not modify files outside the scope of the current request.
 - Ask clarifying questions early rather than building the wrong thing.
 - If a shell command fails, try a simpler alternative immediately.
+- If you fail twice at the same operation, stop. Check if a skill has the
+  answer (`/skills list`). If none fits, ask the user for guidance.
 - Use Rails conventions: RESTful routes, ActiveRecord patterns, MVC structure.
 - Write model validations and database constraints for data integrity.
 - Before starting repetitive edits across multiple files, identify a shared pattern
