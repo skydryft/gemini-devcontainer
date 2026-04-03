@@ -33,6 +33,10 @@ sudo chmod +x /usr/local/bin/gemini /opt/gemini-cli-gt/gemini.js
 cd /workspaces
 rm -rf "$BUILD_DIR"
 
+# --- Install skills CLI (universal agent skill installer) ---
+echo "==> Installing skills CLI..."
+npm install -g skills
+
 # --- Start PostgreSQL ---
 echo "==> Starting PostgreSQL..."
 sudo service postgresql start
