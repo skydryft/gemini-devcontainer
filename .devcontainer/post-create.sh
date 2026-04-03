@@ -38,11 +38,10 @@ echo "==> Starting PostgreSQL..."
 sudo service postgresql start
 
 # --- Create development databases ---
+# Uses the rails superuser role created in the Dockerfile (avoids sudo -u postgres).
 echo "==> Creating development databases..."
-sudo -u postgres createdb app_development 2>/dev/null || true
-sudo -u postgres createdb app_test 2>/dev/null || true
-sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE app_development TO rails;" 2>/dev/null || true
-sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE app_test TO rails;" 2>/dev/null || true
+PGPASSWORD=rails createdb -U rails -h localhost app_development 2>/dev/null || true
+PGPASSWORD=rails createdb -U rails -h localhost app_test 2>/dev/null || true
 
 # --- Install Rails and Bundler ---
 echo "==> Installing Rails and Bundler..."
