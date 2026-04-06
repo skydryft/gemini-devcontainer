@@ -11,26 +11,19 @@ sudo chown vscode:vscode node_modules 2>/dev/null || true
 sudo chown -R vscode:vscode /home/vscode/.npm 2>/dev/null || true
 sudo chown -R vscode:vscode /home/vscode/.gemini 2>/dev/null || true
 
-# --- Install Gemini CLI GT (build from source) ---
-# GitHub Packages requires auth even for public packages, so we clone and build.
-# Uses --ignore-scripts to skip husky/prepare hooks, then builds explicitly.
-echo "==> Installing Gemini CLI GT (building from source)..."
-BUILD_DIR=$(mktemp -d)
-git clone --depth 1 https://github.com/skydryft/gemini-cli-gt.git "$BUILD_DIR/gemini-cli-gt"
-cd "$BUILD_DIR/gemini-cli-gt"
-npm install --ignore-scripts
-npm run generate
-npm run build --workspace=@skydryft/gemini-cli-core
-npm run build --workspace=@skydryft/gemini-cli-devtools
-npm run build --workspace=@skydryft/gemini-cli
-node esbuild.config.js
-node scripts/copy_bundle_assets.js
-sudo mkdir -p /opt/gemini-cli-gt
-sudo cp -r bundle/* /opt/gemini-cli-gt/
-sudo ln -sf /opt/gemini-cli-gt/gemini.js /usr/local/bin/gemini
-sudo chmod +x /usr/local/bin/gemini /opt/gemini-cli-gt/gemini.js
-cd /workspaces
-rm -rf "$BUILD_DIR"
+# --- Install Gemini CLI GT (from GitHub Packages) ---
+echo "==> Installing Gemini CLI GT from GitHub Packages..."
+echo "@skydryft:registry=https://npm.pkg.github.com" >> ~/.npmrc
+sudo npm install -g @skydryft/gemini-cli@latest
+
+# --- Update helper ---
+sudo tee /usr/local/bin/update-gemini > /dev/null << 'SCRIPT'
+#!/bin/bash
+echo "==> Updating Gemini CLI GT..."
+sudo npm install -g @skydryft/gemini-cli@latest --registry=https://npm.pkg.github.com
+echo "==> Gemini CLI GT: $(gemini --version 2>/dev/null)"
+SCRIPT
+sudo chmod +x /usr/local/bin/update-gemini
 
 # --- Install skills CLI (universal agent skill installer) ---
 echo "==> Installing skills CLI..."
