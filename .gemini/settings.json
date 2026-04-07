@@ -29,14 +29,7 @@
     }
   },
   "tools": {
-    "sandbox": false,
-    "core": [
-      "run_shell_command",
-      "ask_user",
-      "update_topic",
-      "save_memory",
-      "activate_skill"
-    ]
+    "sandbox": false
   },
   "context": {
     "fileFiltering": {
